@@ -31,7 +31,7 @@ class Images extends Component {
 		this.setState((prevState)=>(
 			{
 				start: prevState.start + 1,
-				count: 6
+				count: 24
 			}
 		),()=>{ // 异步setState后axios请求新的一页数据然后更新state
 			axios.get(`/api/photos?count=${this.state.count}&start=${this.state.start}`)
@@ -61,7 +61,19 @@ class Images extends Component {
 				    </p>
 				  }>
 				  { this.state.images.map((image,index)=>(
-				  	<img key={uuidv4()} className="single-photo" src={image.urls.thumb} alt=""/>
+				  	/*<img key={uuidv4()} className="single-photo" src={image.urls.thumb} alt=""/>*/
+				  	<div style={{
+				  		background: `url(${image.urls.thumb})`,
+				  		backgroundSize: 'cover',
+				  		backgroundPosition: 'center',
+				  		width: '200px',
+				  		height: '300px',
+				  		display: 'inline-block',
+				  		margin: '20px',
+				  		// borderRadius: '4px',
+				  		border: '10px solid menu',
+				  		boxShadow: '0 2px 1px rgba(0,0,0,.4)'
+				  	}} key={uuidv4()} className='single-photo'></div>
 				  )) }
 				</InfiniteScroll>
 			</Fragment>
